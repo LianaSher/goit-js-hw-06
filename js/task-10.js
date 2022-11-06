@@ -15,23 +15,32 @@ refs.btnDestroy.addEventListener("click", destroyBoxes);
 
 let amount = 0;
 
-function onInputNumber(event) {
+function onInputNumber() {
   amount = refs.inputNumber.value;
 }
 
 function onBtnCreateClick(event) {
   createBoxes(amount);
 }
+
 let n = 20;
+const markup = [];
 function createBoxes(amount) {
   for (let i = 0; i < amount; i += 1) {
     n += 10;
+
     let oneDiv = document.createElement("div");
-    refs.firstDivElement.append(oneDiv);
     oneDiv.setAttribute("height", n);
     oneDiv.setAttribute("width", n);
     oneDiv.style.backgroundColor = getRandomHexColor();
+    markup.push(oneDiv);
   }
+  markup.join(" ");
+  appendMarkup(markup);
+}
+
+function appendMarkup(markup) {
+  refs.firstDivElement.append(...markup);
 }
 
 function destroyBoxes(event) {
